@@ -8,6 +8,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
 class HomeController extends Controller{
+
+    /**
+    * @Route("/hello/{prenom}",name="hellopage")
+    * @Route("/hello2",name="hello2")
+    */
+    public function hello($prenom = "Visiteur"){
+        return $this->render("hello.html.twig",
+        ['prenom' => $prenom]
+    );
+    }
+
     // 1er pillier la méthode public ici home()
     // 2eme pillier la route lier à notre méthode public
     /**
