@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ad;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,6 +15,7 @@ class HomeController extends Controller{
     * @Route("/hello2",name="hello2")
     */
     public function hello($prenom = "Visiteur"){
+
         return $this->render("hello.html.twig",
         ['prenom' => $prenom]
     );
