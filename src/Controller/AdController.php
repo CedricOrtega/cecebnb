@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Form\AnnonceType;
 use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
@@ -26,6 +28,7 @@ class AdController extends AbstractController
 
     /**
      * Permet de créer une annonce détaillée
+     * AdType ==> AnnonceType
      * @Route("/ads/create", name="ads_create")
      * @return Response
      */
@@ -33,17 +36,10 @@ class AdController extends AbstractController
     {
         $newAd = new Ad();
 
-        $formCreate = $this->createFormBuilder($newAd)
-                                ->add('title')
-                                ->add('introduction')
-                                ->add('content')
-                                ->add('rooms')
-                                ->add('price')
-                                ->add('coverImage')
-                                ->getForm();
+        $form = $this->createForm(AnnonceType::class, $newAd);
                                 
         return $this->render('ad/create.html.twig',[
-            'form', $formCreate->createView()
+            'form' => $form->createView()
         ]);
 
     }
